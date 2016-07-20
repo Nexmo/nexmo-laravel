@@ -1,6 +1,13 @@
 {
+    "name": "nexmo/laravel",
+    "description": "Laravel Package for Nexmo's PHP Client",
     "require": {
-        "nexmo/client": "@beta",
+        "nexmo/client": "dev-master as 1.0",
         "illuminate/support": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nexmo\\Laravel\\": "src/"
+        }
     }
 }
