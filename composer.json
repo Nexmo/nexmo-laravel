@@ -1,0 +1,6 @@
+{
+    "require": {
+        "nexmo/client": "@beta",
+        "illuminate/support": "^5.2"
+    }
+}
