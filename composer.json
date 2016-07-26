@@ -1,6 +1,19 @@
 {
     "name": "nexmo/laravel",
     "description": "Laravel Package for Nexmo's PHP Client",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Tim Lytle",
+            "email": "tim@nexmo.com",
+            "role": "Developer",
+            "homepage": "http://twitter.com/tjlytle"
+        }
+    ],
+    "support": {
+        "email": "devrel@nexmo.com"
+    },
     "require": {
         "nexmo/client": "dev-master as 1.0",
         "illuminate/support": "^5.2"
