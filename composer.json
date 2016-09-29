@@ -15,8 +15,8 @@
         "email": "devrel@nexmo.com"
     },
     "require": {
-        "nexmo/client": "dev-master as 1.0",
-        "illuminate/support": "^5.2"
+        "illuminate/support": "^5.2",
+        "nexmo/client": "1.0.0-beta3"
     },
     "autoload": {
         "psr-4": {
