@@ -6,13 +6,17 @@ Installation
 ------------
 
 To install the PHP client library using Composer:
-
-    composer require nexmo/laravel
-
-*Importaint note*: While the client library is in `beta`, to avoid changing the `minimum-stability` in your 
-`composer.json` require `nexmo/client` as well, using `@beta` as the version.
     
     composer require nexmo/client @beta
+    composer require nexmo/laravel 1.0.0-beta3
+
+*Importaint note*: While the client library is in `beta`, requiring `nexmo/client` specifically avoids changing the 
+`minimum-stability` in your `composer.json`.
+
+Alternatively, add these two lines to your composer require section:
+
+    "nexmo/client": "@beta",
+    "nexmo/laravel": "1.0.0-beta3"
     
 Then add `Nexmo\Laravel\NexmoServiceProvider` to the `providers` array in your `config/app.php`:
 
