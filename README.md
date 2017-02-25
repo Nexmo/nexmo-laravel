@@ -47,7 +47,7 @@ To use the Nexmo Client Library you can use the facade, or request the instance 
     Nexmo::message()->send([
         'to' => '14845551244',
         'from' => '16105552344',
-        'text' => 'Using the facad to send a mesage.'
+        'text' => 'Using the facade to send a mesage.'
     ]);
 
     //or
