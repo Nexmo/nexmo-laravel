@@ -11,19 +11,20 @@ return [
     |
     */
 
-    //'api_key' => 'API_KEY',
-    //'api_secret' => 'API_SECRET',
+    'api_key' => function_exists('env') ? env('NEXMO_KEY', '') : '',
+    'api_secret' => function_exists('env') ? env('NEXMO_SECRET', '') : '',
 
     /*
     |--------------------------------------------------------------------------
     | Signature Secret
     |--------------------------------------------------------------------------
     |
-    | If you're using a signature secret, use this section.
+    | If you're using a signature secret, use this section. This can be used
+    | without an `api_secret` for some APIs, as well as with an `api_secret`
+    | for all APIs.
     |
     */
 
-    //'api_key' => 'API_KEY',
-    //'signature_secret' => 'SECRET'
+    'signature_secret' => function_exists('env') ? env('NEXMO_SIGNATURE_SECRET', '') : '',
 
 ];

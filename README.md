@@ -7,16 +7,14 @@ Installation
 
 To install the PHP client library using Composer:
     
-    composer require nexmo/client @beta
-    composer require nexmo/laravel 1.0.0-beta3
+    composer require nexmo/laravel 
 
 *Importaint note*: While the client library is in `beta`, requiring `nexmo/client` specifically avoids changing the 
 `minimum-stability` in your `composer.json`.
 
 Alternatively, add these two lines to your composer require section:
 
-    "nexmo/client": "@beta",
-    "nexmo/laravel": "1.0.0-beta3"
+    "nexmo/laravel": "0.4.0"
     
 Then add `Nexmo\Laravel\NexmoServiceProvider` to the `providers` array in your `config/app.php`:
 
@@ -37,7 +35,11 @@ You can use `artisan vendor:publish` to copy the distribution configuration file
 
     php artisan vendor:publish
     
-Then set either the `api_key` and `api_secret`, or the `api_key` and `signature_secret`.
+Then update `config/nexmo.php` with your credentials. You can also update your `.env` file with the following:
+```
+NEXMO_KEY = my_api_key
+NEXMO_SECRET = my_secret
+```
 
 Usage
 -----
