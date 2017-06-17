@@ -9,7 +9,7 @@ To install the PHP client library using Composer:
     
     composer require nexmo/laravel 
 
-*Importaint note*: While the client library is in `beta`, requiring `nexmo/client` specifically avoids changing the 
+*Important note*: While the client library is in `beta`, requiring `nexmo/client` specifically avoids changing the 
 `minimum-stability` in your `composer.json`.
 
 Alternatively, add these two lines to your composer require section:
@@ -49,7 +49,7 @@ To use the Nexmo Client Library you can use the facade, or request the instance 
     Nexmo::message()->send([
         'to' => '14845551244',
         'from' => '16105552344',
-        'text' => 'Using the facade to send a mesage.'
+        'text' => 'Using the facade to send a message.'
     ]);
 
     //or
