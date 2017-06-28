@@ -22,5 +22,15 @@
         "psr-4": {
             "Nexmo\\Laravel\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nexmo\\Laravel\\NexmoServiceProvider"
+            ],
+            "aliases": {
+                "Nexmo": "Nexmo\\Laravel\\Facade\\Nexmo"
+            }
+        }
     }
 }
