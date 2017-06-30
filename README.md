@@ -15,8 +15,14 @@ To install the PHP client library using Composer:
 Alternatively, add these two lines to your composer require section:
 
     "nexmo/laravel": "0.4.0"
-    
-Then add `Nexmo\Laravel\NexmoServiceProvider` to the `providers` array in your `config/app.php`:
+
+### Laravel 5.5+
+
+If you're using Laravel 5.5 or above, the package will automatically register the `Nexmo` provider and facade.
+
+### Laravel 5.4 and below
+
+Add `Nexmo\Laravel\NexmoServiceProvider` to the `providers` array in your `config/app.php`:
 
     Nexmo\Laravel\NexmoServiceProvider::class
     
