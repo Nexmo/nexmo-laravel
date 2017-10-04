@@ -143,11 +143,10 @@ class NexmoServiceProvider extends ServiceProvider
             return false;
         }
 
-        return (
+        return
             $config->has('nexmo.'.$key) &&
             ! is_null($config->get('nexmo.'.$key)) &&
-            ! empty($config->get('nexmo.'.$key))
-        );
+            ! empty($config->get('nexmo.'.$key));
     }
 
     /**
