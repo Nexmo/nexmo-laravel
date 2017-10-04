@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'api_key' => function_exists('env') ? env('NEXMO_KEY', '') : '',
+    'api_key'    => function_exists('env') ? env('NEXMO_KEY', '') : '',
     'api_secret' => function_exists('env') ? env('NEXMO_SECRET', '') : '',
 
     /*
