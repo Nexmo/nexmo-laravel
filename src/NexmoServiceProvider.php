@@ -25,10 +25,14 @@ class NexmoServiceProvider extends ServiceProvider
         // Config file path.
         $dist = __DIR__.'/../config/nexmo.php';
 
-        // Publishes config File.
-        $this->publishes([
-            $dist => config_path('nexmo.php'),
-        ]);
+        // If we're installing in to a Lumen project, config_path
+        // won't exist so we can't auto-publish the config
+        if (function_exists('config_path')) {
+            // Publishes config File.
+            $this->publishes([
+                $dist => config_path('nexmo.php'),
+            ]);
+        }
 
         // Merge config.
         $this->mergeConfigFrom($dist, 'nexmo');
