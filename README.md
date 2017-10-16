@@ -63,6 +63,41 @@ Or add an alias in your `config/app.php`:
 ],
 ```
 
+### Using Nexmo-Laravel with Lumen
+
+Nexmo-Laravel works with Lumen too! You'll need to do a little work by hand
+to get it up and running. First, install the package using composer:
+
+
+```bash
+composer require nexmo/laravel
+```
+
+Next, we have to tell Lumen that our library exists. Update `bootstrap/app.php`
+and register the `NexmoServiceProvider`:
+
+```php
+$app->register(Nexmo\Laravel\NexmoServiceProvider::class);
+```
+
+Finally, we need to configure the library. Unfortunately Lumen doesn't support
+auto-publishing files so you'll have to create the config file yourself by creating
+a config directory and copying the config file out of the package in to your project:
+
+```bash
+mkdir config
+cp vendor/nexmo/laravel/config/nexmo.php config/nexmo.php
+```
+
+At this point, set `NEXMO_KEY` and `NEXMO_SECRET` in your `.env` file and it should
+be working for you. You can test this with the following route:
+
+```php
+$router->get('/', function () use ($router) {
+    app(Nexmo\Client::class);
+});
+```
+
 Configuration
 -------------
 
