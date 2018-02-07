@@ -25,7 +25,7 @@ class TestNoNexmoConfiguration extends AbstractTestCase
      * @return void
      *
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Missing nexmo configuration: "api_secret" or "signature_secret".
+     * @expectedExceptionMessage Please provide Nexmo API credentials. Possible combinations: api_key + api_secret, api_key + signature_secret, private_key + application_id, api_key + api_secret + private_key + application_id, api_key + signature_secret + private_key + application_id
      */
     public function testWhenNoConfigurationIsGivenExceptionIsRaised()
     {
