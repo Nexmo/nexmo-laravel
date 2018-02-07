@@ -114,6 +114,13 @@ NEXMO_KEY=my_api_key
 NEXMO_SECRET=my_secret
 ```
 
+Optionally, you could also set an `application_id` and `private_key` if required:
+
+```dotenv
+NEXMO_APPLICATION_ID=my_application_id
+NEXMO_PRIVATE_KEY=./private.key
+```
+
 Usage
 -----
    
@@ -136,6 +143,23 @@ $nexmo->message()->send([
     'to'   => '14845551244',
     'from' => '16105552344',
     'text' => 'Using the instance to send a message.'
+]);
+```
+
+If you're using private key authentication, try making a voice call:
+
+```php
+Nexmo::calls()->create([
+    'to' => [[
+        'type' => 'phone',
+        'number' => '14155550100'
+    ]],
+    'from' => [
+        'type' => 'phone',
+        'number' => '14155550101'
+    ],
+    'answer_url' => ['https://example.com/webhook/answer'],
+    'event_url' => ['https://example.com/webhook/event']
 ]);
 ```
 

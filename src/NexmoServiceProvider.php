@@ -77,32 +77,67 @@ class NexmoServiceProvider extends ServiceProvider
             $this->raiseRunTimeException('Missing nexmo configuration section.');
         }
 
-        // Check for API_KEY.
-        if ($this->nexmoConfigHasNo('api_key')) {
-            $this->raiseRunTimeException('Missing nexmo configuration: "api_key".');
-        }
-
-        // Neither type of Credentials could be resolved from config.
-        if ($this->nexmoConfigHasNo('api_secret') && $this->nexmoConfigHasNo('signature_secret')) {
-            $this->raiseRunTimeException('Missing nexmo configuration: "api_secret" or "signature_secret".');
-        }
-
         // Get Client Options.
-        $options = array_diff_key($config->get('nexmo'), ['api_key', 'api_secret', 'shared_secret']);
+        $options = array_diff_key($config->get('nexmo'), ['private_key', 'application_id', 'api_key', 'api_secret', 'shared_secret']);
 
-        // Check whether config is setup for using API_SECRET
-        // otherwise use SIGNATURE.
+        // Do we have a private key?
+        $privateKeyCredentials = null;
+        if ($this->nexmoConfigHas('private_key')) {
+            if ($this->nexmoConfigHasNo('application_id')) {
+                $this->raiseRunTimeException('You must provide nexmo.application_id when using a private key');
+            }
+
+            $privateKeyCredentials = $this->createPrivateKeyCredentials($config->get('nexmo.private_key'), $config->get('nexmo.application_id'));
+        }
+
+        $basicCredentials = null;
         if ($this->nexmoConfigHas('api_secret')) {
-            return new Client(
-                $this->createBasicCredentials($config->get('nexmo.api_key'), $config->get('nexmo.api_secret')),
-                $options
+            $basicCredentials = $this->createBasicCredentials($config->get('nexmo.api_key'), $config->get('nexmo.api_secret'));
+        }
+
+        $signatureCredentials = null;
+        if ($this->nexmoConfigHas('signature_secret')) {
+            $signatureCredentials = $this->createSignatureCredentials($config->get('nexmo.api_key'), $config->get('nexmo.signature_secret'));
+        }
+
+        // We can have basic only, signature only, private key only or
+        // we can have private key + basic/signature, so let's work out
+        // what's been provided
+        if ($basicCredentials && $signatureCredentials) {
+            $this->raiseRunTimeException('Provide either nexmo.api_secret or nexmo.signature_secret');
+        }
+
+        if ($privateKeyCredentials && $basicCredentials) {
+            $credentials = new Client\Credentials\Container(
+                $privateKeyCredentials,
+                $basicCredentials
+            );
+        } else if ($privateKeyCredentials && $signatureCredentials) {
+            $credentials = new Client\Credentials\Container(
+                $privateKeyCredentials,
+                $signatureCredentials
+            );
+        } else if ($privateKeyCredentials) {
+            $credentials = $privateKeyCredentials;
+        } else if ($signatureCredentials) {
+            $credentials = $signatureCredentials;
+        } else if ($basicCredentials) {
+            $credentials = $basicCredentials;
+        } else {
+            $possibleNexmoKeys = [
+                'api_key + api_secret',
+                'api_key + signature_secret',
+                'private_key + application_id',
+                'api_key + api_secret + private_key + application_id',
+                'api_key + signature_secret + private_key + application_id',
+            ];
+            $this->raiseRunTimeException(
+                'Please provide Nexmo API credentials. Possible combinations: '
+                . join(", ", $possibleNexmoKeys)
             );
         }
 
-        return new Client(
-            $this->createSignatureCredentials($config->get('nexmo.api_key'), $config->get('nexmo.signature_secret')),
-            $options
-        );
+        return new Client($credentials, $options);
     }
 
     /**
@@ -177,6 +212,37 @@ class NexmoServiceProvider extends ServiceProvider
     protected function createSignatureCredentials($key, $signatureSecret)
     {
         return new Client\Credentials\SignatureSecret($key, $signatureSecret);
+    }
+
+    /**
+     * Create Keypair credentials for client.
+     *
+     * @param string $key
+     * @param string $applicationId
+     *
+     * @return Client\Credentials\Keypair
+     */
+    protected function createPrivateKeyCredentials($key, $applicationId)
+    {
+        return new Client\Credentials\Keypair($this->loadPrivateKey($key), $applicationId);
+    }
+
+    /**
+     * Load private key contents from root directory
+     */
+    protected function loadPrivateKey($key)
+    {
+        if (app()->runningUnitTests()) {
+            return '===FAKE-KEY===';
+        }
+
+        // If it's a relative path, start searching in the
+        // project root
+        if ($key[0] !== '/') {
+            $key = base_path().'/'.$key;
+        }
+
+        return file_get_contents($key);
     }
 
     /**

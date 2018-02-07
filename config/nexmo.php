@@ -28,4 +28,18 @@ return [
 
     'signature_secret' => function_exists('env') ? env('NEXMO_SIGNATURE_SECRET', '') : '',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Private Key
+    |--------------------------------------------------------------------------
+    |
+    | Private keys are used to generate JWTs for authentication. Generation is
+    | handled by the library. JWTs are required for newer APIs, such as voice
+    | and media
+    |
+    */
+
+    'private_key' => function_exists('env') ? env('NEXMO_PRIVATE_KEY', '') : '',
+    'application_id' => function_exists('env') ? env('NEXMO_APPLICATION_ID', '') : '',
+
 ];

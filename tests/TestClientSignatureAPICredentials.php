@@ -21,7 +21,7 @@ class TestClientSignatureAPICredentials extends AbstractTestCase
 
     /**
      * Test that our Nexmo client is created with
-     * the Basic API credentials.
+     * the signature credentials
      *
      * @return void
      */
