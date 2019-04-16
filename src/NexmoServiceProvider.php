@@ -78,7 +78,7 @@ class NexmoServiceProvider extends ServiceProvider
         }
 
         // Get Client Options.
-        $options = array_diff_key($config->get('nexmo'), ['private_key', 'application_id', 'api_key', 'api_secret', 'shared_secret']);
+        $options = array_diff_key($config->get('nexmo'), ['private_key', 'application_id', 'api_key', 'api_secret', 'shared_secret', 'app']);
 
         // Do we have a private key?
         $privateKeyCredentials = null;
