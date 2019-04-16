@@ -42,4 +42,16 @@ return [
     'private_key' => function_exists('env') ? env('NEXMO_PRIVATE_KEY', '') : '',
     'application_id' => function_exists('env') ? env('NEXMO_APPLICATION_ID', '') : '',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Identifiers
+    |--------------------------------------------------------------------------
+    |
+    | Add an application name and version here to identify your application when
+    | making API calls
+    |
+    */
+
+    'app' => ['name' => function_exists('env') ? env('NEXMO_APP_NAME', 'NexmoLaravel') : 'NexmoLaravel',
+        'version' => function_exists('env') ? env('NEXMO_APP_VERSION', '1.1.2') : '1.1.2']
 ];
