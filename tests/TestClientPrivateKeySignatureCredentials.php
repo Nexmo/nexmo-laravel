@@ -19,6 +19,7 @@ class TestClientPrivateKeySignatureCredentials extends AbstractTestCase
         $app['config']->set('nexmo.application_id', 'application-id-123');
         $app['config']->set('nexmo.api_key', 'my_api_key');
         $app['config']->set('nexmo.signature_secret', 'my_signature');
+        $app['config']->set('nexmo.signature_method', 'md5hash');
     }
 
     /**

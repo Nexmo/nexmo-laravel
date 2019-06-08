@@ -202,4 +202,27 @@ Nexmo::calls()->create([
 
 For more information on using the Nexmo client library, see the [official client library repository][client-library].
 
+Laravel Helpers
+---------------
+
+In addition to a Facade, this library provides validation rules and form requests for validating message signatures to ensure that a webhook originates from Nexmo.
+
+The easiest way to use this functionality is to type hint on the `Nexmo\Laravel\ValidSignatureRequest` form request which takes care of everything for you:
+
+```php
+use Nexmo\Laravel\ValidSignatureRequest;
+
+Route::post('/webhooks/inbound-sms', function (ValidSignatureRequest $request) {
+    // If we get this far the signature is valid and the data can be trusted
+});
+```
+
+If you'd like slightly more control and want to perform additional validation, you can use the `nexmo_signature` validation rule like so:
+
+```php
+Validator::make(request()->all(), [
+    'sig' => 'nexmo_signature'
+])->validate();
+```
+
 [client-library]: https://github.com/Nexmo/nexmo-php

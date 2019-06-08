@@ -27,6 +27,7 @@ return [
     */
 
     'signature_secret' => function_exists('env') ? env('NEXMO_SIGNATURE_SECRET', '') : '',
+    'signature_method' => function_exists('env') ? env('NEXMO_SIGNATURE_METHOD', '') : '',
 
     /*
     |--------------------------------------------------------------------------
