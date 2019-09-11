@@ -113,11 +113,11 @@ To do this:
 
 1. `composer require nexmo/client-core` to install the Core SDK
 2. Install your own `httplug`-compatible adapter. For example, to use Symfony's HTTP Client:
-  1. `composer require symfony/http-client php-http/message-factory php-http/httplug nyholm/psr7`
+    1. `composer require symfony/http-client php-http/message-factory php-http/httplug nyholm/psr7`
 3. `composer require nexmo/laravel` to install this package
 4. In your `.env` file, add the following configuration:
 
-    NEXMO_HTTP_CLIENT="Symfony\\Component\\HttpClient\\HttplugClient"
+    `NEXMO_HTTP_CLIENT="Symfony\\Component\\HttpClient\\HttplugClient"`
 
 You can now pull the `Nexmo\Client` object from the Laravel Service Container, or use the Facade
 provided by this package.
