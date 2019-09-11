@@ -137,7 +137,12 @@ class NexmoServiceProvider extends ServiceProvider
             );
         }
 
-        return new Client($credentials, $options);
+        $httpClient = null;
+        if ($this->nexmoConfigHas('http_client')) {
+            $httpClient = $this->app->make($config->get(('nexmo.http_client')));
+        }
+
+        return new Client($credentials, $options, $httpClient);
     }
 
     /**

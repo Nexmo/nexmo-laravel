@@ -53,5 +53,17 @@ return [
     */
 
     'app' => ['name' => function_exists('env') ? env('NEXMO_APP_NAME', 'NexmoLaravel') : 'NexmoLaravel',
-        'version' => function_exists('env') ? env('NEXMO_APP_VERSION', '1.1.2') : '1.1.2']
+        'version' => function_exists('env') ? env('NEXMO_APP_VERSION', '1.1.2') : '1.1.2'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Client Override
+    |--------------------------------------------------------------------------
+    |
+    | In the event you need to use this with nexmo/client-core, this can be set
+    | to provide a custom HTTP client.
+    |
+    */
+
+    'http_client' => function_exists('env') ? env('NEXMO_HTTP_CLIENT', '') : '',
 ];

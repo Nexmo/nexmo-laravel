@@ -27,7 +27,7 @@ Alternatively, add these two lines to your composer require section:
 ```json
 {
     "require": {
-        "nexmo/laravel": "^1.0"
+        "nexmo/laravel": "^2.0"
     }
 }
 ```
@@ -97,6 +97,30 @@ $router->get('/', function () use ($router) {
     app(Nexmo\Client::class);
 });
 ```
+
+### Dealing with Guzzle Client issues
+
+By default, this package uses `nexmo/client`, which includes a Guzzle adapter for accessing
+the API. Some other libraries supply their own Guzzle adapter, leading to composer not being
+able to resolve a list of dependencies. You may get an error when adding `nexmo/laravel` to
+your application because of this.
+
+The Nexmo client allows you to override the HTTP adapter that is being used. This takes a
+bit more configuration, but this package allows you to use `nexmo/client-core` to supply your
+own HTTP adapter.
+
+To do this:
+
+1. `composer require nexmo/client-core` to install the Core SDK
+2. Install your own `httplug`-compatible adapter. For example, to use Symfony's HTTP Client:
+  1. `composer require symfony/http-client php-http/message-factory php-http/httplug nyholm/psr7`
+3. `composer require nexmo/laravel` to install this package
+4. In your `.env` file, add the following configuration:
+
+    NEXMO_HTTP_CLIENT="Symfony\\Component\\HttpClient\\HttplugClient"
+
+You can now pull the `Nexmo\Client` object from the Laravel Service Container, or use the Facade
+provided by this package.
 
 Configuration
 -------------
