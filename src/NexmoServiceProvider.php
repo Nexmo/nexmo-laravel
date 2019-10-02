@@ -241,6 +241,10 @@ class NexmoServiceProvider extends ServiceProvider
             return '===FAKE-KEY===';
         }
 
+        if (Str::startsWith($key, '-----BEGIN PRIVATE KEY-----')) {
+            return $key;
+        }
+
         // If it's a relative path, start searching in the
         // project root
         if ($key[0] !== '/') {
