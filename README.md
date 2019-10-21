@@ -145,6 +145,19 @@ NEXMO_APPLICATION_ID=my_application_id
 NEXMO_PRIVATE_KEY=./private.key
 ```
 
+Private keys can either be a path to a file, like above, or the string of the key itself:
+
+```dotenv
+NEXMO_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n[...]\n-----END PRIVATE KEY-----\n"
+```
+
+```dotenv
+NEXMO_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
+[...]
+-----END PRIVATE KEY-----
+"
+```
+
 Usage
 -----
    
