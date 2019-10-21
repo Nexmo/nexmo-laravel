@@ -38,6 +38,6 @@ class TestClientPrivateKeySignatureCredentials extends AbstractTestCase
 
         $this->assertInstanceOf(Client\Credentials\Container::class, $credentialsObject);
         $this->assertEquals(['key' => '===FAKE-KEY===', 'application' => 'application-id-123'], $keypairCredentials);
-        $this->assertEquals(['api_key' => 'my_api_key', 'signature_secret' => 'my_signature'], $signatureCredentials);
+        $this->assertEquals(['api_key' => 'my_api_key', 'signature_secret' => 'my_signature', 'signature_method' => 'md5hash'], $signatureCredentials);
     }
 }

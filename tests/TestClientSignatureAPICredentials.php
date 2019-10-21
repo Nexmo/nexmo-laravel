@@ -33,6 +33,6 @@ class TestClientSignatureAPICredentials extends AbstractTestCase
         $credentialsArray = $this->getClassProperty(Client\Credentials\SignatureSecret::class, 'credentials', $credentialsObject);
 
         $this->assertInstanceOf(Client\Credentials\SignatureSecret::class, $credentialsObject);
-        $this->assertEquals(['api_key' => 'my_api_key', 'signature_secret' => 'my_signature'], $credentialsArray);
+        $this->assertEquals(['api_key' => 'my_api_key', 'signature_secret' => 'my_signature', 'signature_method' => 'md5hash'], $credentialsArray);
     }
 }
