@@ -3,6 +3,7 @@
 namespace Nexmo\Laravel;
 
 use Nexmo\Client;
+use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Config\Repository as Config;
 
@@ -239,6 +240,10 @@ class NexmoServiceProvider extends ServiceProvider
     {
         if (app()->runningUnitTests()) {
             return '===FAKE-KEY===';
+        }
+
+        if (Str::startsWith($key, '-----BEGIN PRIVATE KEY-----')) {
+            return $key;
         }
 
         // If it's a relative path, start searching in the
