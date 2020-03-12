@@ -9,6 +9,8 @@
     <a href="https://packagist.org/packages/nexmo/laravel"><img src="https://poser.pugx.org/nexmo/laravel/downloads" alt="Total Downloads"></a>
 </p>
 
+<img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
+
 ## Introduction
 
 This is a simple Laravel Service Provider providing access to the  [Nexmo PHP Client Library][client-library].
