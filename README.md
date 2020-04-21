@@ -130,7 +130,7 @@ Configuration
 You can use `artisan vendor:publish` to copy the distribution configuration file to your app's config directory:
 
 ```bash
-php artisan vendor:publish
+php artisan vendor:publish --provider="Nexmo\Laravel\NexmoServiceProvider"
 ```
 
 Then update `config/nexmo.php` with your credentials. Alternatively, you can update your `.env` file with the following:
