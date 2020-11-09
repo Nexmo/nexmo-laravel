@@ -4,6 +4,8 @@ namespace Nexmo\Laravel\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Nexmo\Laravel\NexmoServiceProvider;
+use Vonage\Client;
+use Nexmo\Client as NexmoClient;
 
 abstract class AbstractTestCase extends TestCase
 {
@@ -51,5 +53,16 @@ abstract class AbstractTestCase extends TestCase
         $refProperty->setAccessible(true);
 
         return $refProperty->getValue($object);
+    }
+
+    /**
+     * Returns a list of classes we should attempt to create
+     */
+    public function classNameProvider(): array
+    {
+        return [
+            [Client::class],
+            [NexmoClient::class],
+        ];
     }
 }

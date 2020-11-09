@@ -2,7 +2,7 @@
 
 namespace Nexmo\Laravel\Tests;
 
-use Nexmo\Client;
+use Vonage\Client;
 
 class TestServiceProvider extends AbstractTestCase
 {
@@ -23,12 +23,14 @@ class TestServiceProvider extends AbstractTestCase
      * Test that we can create the Nexmo client
      * from container binding.
      *
+     * @dataProvider classNameProvider
+     *
      * @return void
      */
-    public function testClientResolutionFromContainer()
+    public function testClientResolutionFromContainer($className)
     {
-        $client = app(Client::class);
+        $client = app($className);
 
-        $this->assertInstanceOf(Client::class, $client);
+        $this->assertInstanceOf($className, $client);
     }
 }
