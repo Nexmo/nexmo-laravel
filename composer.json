@@ -54,5 +54,8 @@
                 "Nexmo": "Nexmo\\Laravel\\Facade\\Nexmo"
             }
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
