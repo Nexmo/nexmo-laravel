@@ -2,7 +2,7 @@
 
 namespace Nexmo\Laravel\Tests;
 
-use Nexmo\Client;
+use Vonage\Client;
 
 class TestClientBasicAPICredentials extends AbstractTestCase
 {

@@ -2,7 +2,7 @@
 
 namespace Nexmo\Laravel\Tests;
 
-use Nexmo\Client;
+use Vonage\Client;
 
 class TestClientPrivateKeySignatureCredentials extends AbstractTestCase
 {
@@ -25,11 +25,13 @@ class TestClientPrivateKeySignatureCredentials extends AbstractTestCase
      * Test that our Nexmo client is created with
      * a container with private key + signature credentials
      *
+     * @dataProvider classNameProvider
+     *
      * @return void
      */
-    public function testClientCreatedWithPrivateKeySignatureCredentials()
+    public function testClientCreatedWithPrivateKeySignatureCredentials($className)
     {
-        $client = app(Client::class);
+        $client = app($className);
         $credentialsObject = $this->getClassProperty(Client::class, 'credentials', $client);
 
         $credentialsArray = $this->getClassProperty(Client\Credentials\Container::class, 'credentials', $credentialsObject);

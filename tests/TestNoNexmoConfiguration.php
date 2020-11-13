@@ -2,7 +2,7 @@
 
 namespace Nexmo\Laravel\Tests;
 
-use Nexmo\Client;
+use Vonage\Client;
 
 class TestNoNexmoConfiguration extends AbstractTestCase
 {
@@ -20,15 +20,17 @@ class TestNoNexmoConfiguration extends AbstractTestCase
 
     /**
      * Test that when we do not supply Nexmo configuration
-     * a Runtime exception is generated.
+     * a Runtime exception is generated under the Vonage namespace.
+     *
+     * @dataProvider classNameProvider
      *
      * @return void
-     *
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Please provide Nexmo API credentials. Possible combinations: api_key + api_secret, api_key + signature_secret, private_key + application_id, api_key + api_secret + private_key + application_id, api_key + signature_secret + private_key + application_id
      */
-    public function testWhenNoConfigurationIsGivenExceptionIsRaised()
+    public function testWhenNoConfigurationIsGivenExceptionIsRaised($className)
     {
-        app(Client::class);
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Please provide Nexmo API credentials. Possible combinations: api_key + api_secret, api_key + signature_secret, private_key + application_id, api_key + api_secret + private_key + application_id, api_key + signature_secret + private_key + application_id');
+
+        app($className);
     }
 }

@@ -2,7 +2,8 @@
 
 namespace Nexmo\Laravel;
 
-use Nexmo\Client;
+use Vonage\Client;
+use Nexmo\Client as NexmoClient;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Config\Repository as Config;
@@ -50,6 +51,9 @@ class NexmoServiceProvider extends ServiceProvider
         $this->app->singleton(Client::class, function ($app) {
             return $this->createNexmoClient($app['config']);
         });
+        $this->app->singleton(NexmoClient::class, function ($app) {
+            return $this->createNexmoClient($app['config']);
+        });
     }
 
     /**
@@ -59,7 +63,10 @@ class NexmoServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [Client::class];
+        return [
+            Client::class,
+            NexmoClient::class
+        ];
     }
 
     /**

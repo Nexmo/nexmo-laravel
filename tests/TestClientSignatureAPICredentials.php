@@ -2,7 +2,7 @@
 
 namespace Nexmo\Laravel\Tests;
 
-use Nexmo\Client;
+use Vonage\Client;
 
 class TestClientSignatureAPICredentials extends AbstractTestCase
 {
@@ -23,11 +23,12 @@ class TestClientSignatureAPICredentials extends AbstractTestCase
      * Test that our Nexmo client is created with
      * the signature credentials
      *
+     * @dataProvider classNameProvider
      * @return void
      */
-    public function testClientCreatedWithSignatureAPICredentials()
+    public function testClientCreatedWithSignatureAPICredentials($className)
     {
-        $client = app(Client::class);
+        $client = app($className);
 
         $credentialsObject = $this->getClassProperty(Client::class, 'credentials', $client);
         $credentialsArray = $this->getClassProperty(Client\Credentials\SignatureSecret::class, 'credentials', $credentialsObject);
