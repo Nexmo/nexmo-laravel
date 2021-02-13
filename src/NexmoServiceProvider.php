@@ -112,7 +112,7 @@ class NexmoServiceProvider extends ServiceProvider
         // we can have private key + basic/signature, so let's work out
         // what's been provided
         if ($basicCredentials && $signatureCredentials) {
-            $this->raiseRunTimeException('Provide either nexmo.api_secret or nexmo.signature_secret');
+            $this->raiseRunTimeException('Provide either nexmo.api_secret or nexmo.signature_secret, not both.');
         }
 
         if ($privateKeyCredentials && $basicCredentials) {
