@@ -1,3 +1,7 @@
+> THIS PACKAGE IS ABANDONDED
+> Please use https://github.com/Vonage/vonage-laravel.
+> Pull Requests and Issues opened up on this repo will not be addressed.
+
 <h2 align="center">
     Nexmo Package for Laravel
 </h2>
