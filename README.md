@@ -1,4 +1,4 @@
-> THIS PACKAGE IS ABANDONDED
+> THIS PACKAGE IS ABANDONED
 > Please use https://github.com/Vonage/vonage-laravel.
 > Pull Requests and Issues opened up on this repo will not be addressed.
 
